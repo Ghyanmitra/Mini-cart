@@ -1,6 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { selectProduct } from "../products/ProductSlice";
 
 function Navbar() {
+  const [totalAmount, setTotalAmoun] = useState("");
+  const [count, setCount] = useState(0);
+  const products = useSelector(selectProduct);
+
+  useEffect(() => {
+    if (products.products) {
+      // console.log(products.products[0].currency);
+
+      setTotalAmoun("$" + products.cartTotalAmount);
+      setCount(products.cartProducts.length);
+    }
+  }, [products.cartProducts]);
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
@@ -27,15 +42,16 @@ function Navbar() {
             </li> */}
           </ul>
           <div className="d-flex">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="btn btn-outline-success" type="submit">
-              Search
-            </button>
+            <div style={{ fontSize: "x-large" }}>
+              {" "}
+              {"" + totalAmount}
+              <div style={{ fontSize: "large" }}>
+                {count} items
+                <div>
+                  <i className="fas fa-sort-down"></i>
+                </div>{" "}
+              </div>
+            </div>
           </div>
         </div>
       </div>

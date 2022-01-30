@@ -3,13 +3,11 @@ import Navbar from "./features/navbar/Navbar";
 
 function App() {
   return (
-    <>
+    <div className="container">
       <Navbar />
 
-      <div className="container">
-        <Home></Home>
-      </div>
-    </>
+      <Home></Home>
+    </div>
   );
 }
 

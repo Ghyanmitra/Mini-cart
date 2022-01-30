@@ -21,7 +21,6 @@ const Home = () => {
     }
 
     return products.map((product) => {
-      console.log(product);
       return <Product key={product.id} product={product}></Product>;
     });
   };
