@@ -51,7 +51,6 @@ const productsSlcies = createSlice({
           break;
         }
       }
-      console.log(removeID);
 
       if (removeID != null) {
         cartProduct.splice(removeID, 1);
