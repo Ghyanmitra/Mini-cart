@@ -16,46 +16,36 @@ function Navbar() {
     }
   }, [products.cartProducts]);
 
+  const cartClick = () => {
+    alert("items");
+  };
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <div className="container-fluid">
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarTogglerDemo01"
-          aria-controls="navbarTogglerDemo01"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
+    <div className="navbar navbar-expand-lg navbar-light bg-light">
+      <div className="col-4">Ghyanmitra</div>
+      <div className="col-4"></div>
+      <div className="col-4 d-flex justify-content-end">
+        <div
+          className="me-2 d-flex"
+          style={{ cursor: "pointer" }}
+          onClick={cartClick}
         >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-          <div to="/" className="navbar-brand">
-            Ghyanmitra Jiblapnor
-          </div>
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-            {/* <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
-                Home
-              </a>
-            </li> */}
-          </ul>
-          <div className="d-flex">
-            <div style={{ fontSize: "x-large" }}>
-              {" "}
+          <div>
+            <div className="font-weight-bold" style={{ fontSize: "x-large" }}>
               {"" + totalAmount}
-              <div style={{ fontSize: "large" }}>
-                {count} items
-                <div>
-                  <i className="fas fa-sort-down"></i>
-                </div>{" "}
-              </div>
             </div>
+            <div className="d-flex">
+              <div>{count} Items</div>
+              <i className="ms-2 fas fa-sort-down"></i>
+            </div>
+          </div>
+
+          <div className="align-self-center">
+            <i className="fas fa-shopping-cart" style={{ fontSize: "2em" }}></i>
           </div>
         </div>
       </div>
-    </nav>
+    </div>
   );
 }
 

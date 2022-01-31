@@ -30,34 +30,44 @@ const Product = (state) => {
   }, [dispatch, products.cartProducts]);
 
   return (
-    <div className="card mt-3 w-75">
-      <div className="card-body d-flex">
-        {/* <img
-          src={logo}
-          style={{ height: "100px", width: "100px" }}
-          alt={title}
-        /> */}
-        <h5 className="card-title">{title}</h5>
-        <p className="card-text ms-5">{desc}</p>
-        <div className="d-flex ms-5">
-          <div
-            onClick={() => dispatch(removeProductFromCart(state.product))}
-            className="btn btn-primary"
-          >
-            -
+    <div className="card mt-2">
+      <div className="card-body">
+        <div className="row">
+          <div className="col-2 align-self-center">
+            <img
+              src={logo}
+              style={{ width: "100%", height: "auto" }}
+              alt={title}
+            />
           </div>
-          <input
-            value={quantity}
-            style={{ width: "30px", textAlign: "center" }}
-            disabled
-          />
-          <div
-            onClick={() => dispatch(addProductToCart(state.product))}
-            className="btn btn-primary"
-          >
-            +
+
+          <div className="col-4 align-self-center">
+            <h5 className="card-title">{title}</h5>
+            <p className="card-text">{desc}</p>
           </div>
-          <div style={{ fontSize: "x-large" }}>{currency + price}</div>
+
+          <div className="col-4 align-self-center">
+            <div className="d-flex">
+              <div
+                onClick={() => dispatch(removeProductFromCart(state.product))}
+                className="btn btn-primary"
+              >
+                -
+              </div>
+              <input
+                value={quantity}
+                style={{ width: "30px", textAlign: "center" }}
+                disabled
+              />
+              <div
+                onClick={() => dispatch(addProductToCart(state.product))}
+                className="btn btn-primary"
+              >
+                +
+              </div>
+              <div style={{ fontSize: "x-large" }}>{currency + price}</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
