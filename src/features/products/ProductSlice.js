@@ -59,6 +59,23 @@ const productsSlcies = createSlice({
         setLocalStorageCartProducts(state.cartProducts);
       }
     },
+    removeProductFromCartById: (state, { payload }) => {
+      const cartProduct = getLocalStorageCartProducts();
+
+      const updatedCart = cartProduct.filter((item) => {
+        return item.id !== payload.id;
+      });
+
+      let totalAmount = 0;
+
+      updatedCart.map((product) => {
+        totalAmount += parseInt(product.price);
+      });
+
+      state.cartTotalAmount = totalAmount;
+      state.cartProducts = updatedCart;
+      setLocalStorageCartProducts(updatedCart);
+    },
   },
 });
 
@@ -68,6 +85,7 @@ export const {
   getProductFailure,
   addProductToCart,
   removeProductFromCart,
+  removeProductFromCartById,
 } = productsSlcies.actions;
 
 //A selctor
@@ -86,6 +104,43 @@ export function fetchProducts() {
         "https://dnc0cmt2n557n.cloudfront.net/products.json"
       );
       const data = await response.json();
+
+      // const data = {
+      //   products: [
+      //     {
+      //       id: "123442",
+      //       title: "Product 1",
+      //       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
+      //       image: "/product1.jpeg",
+      //       price: "39",
+      //       currency: "$",
+      //     },
+      //     {
+      //       id: "123443",
+      //       title: "Product 2",
+      //       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
+      //       image: "/product2.jpeg",
+      //       price: "39",
+      //       currency: "$",
+      //     },
+      //     {
+      //       id: "123444",
+      //       title: "Product 3",
+      //       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
+      //       image: "/product1.jpeg",
+      //       price: "39",
+      //       currency: "$",
+      //     },
+      //     {
+      //       id: "123445",
+      //       title: "Product 4",
+      //       desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
+      //       image: "/product2.jpeg",
+      //       price: "39",
+      //       currency: "$",
+      //     },
+      //   ],
+      // };
 
       dispatch(getProductSuccess(data.products));
     } catch (error) {
